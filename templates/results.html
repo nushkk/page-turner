@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Books in {{ genre }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Books in {{ genre }}</h1>
+    <ul>
+        {% for book in books %}
+        <li>
+            <strong>{{ book.title }}</strong><br />
+            Author: {{ book.author }}<br />
+            Rating: {{ book.rating }} out of 5
+        </li>
+        {% else %}
+        <li>No books found.</li>
+        {% endfor %}
+    </ul>
+    <a href="/">Back to Home</a>
+</body>
+</html>
