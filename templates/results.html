@@ -1,23 +1,42 @@
+<!-- templates/results.html -->
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8" />
-    <title>Books in {{ genre }}</title>
+    <title>{{ genre }} Book Recommendations</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Books in {{ genre }}</h1>
-    <ul>
-        {% for book in books %}
-        <li>
-            <strong>{{ book.title }}</strong><br />
-            Author: {{ book.author }}<br />
-            Rating: {{ book.rating }} out of 5
-        </li>
-        {% else %}
-        <li>No books found.</li>
-        {% endfor %}
-    </ul>
-    <a href="/">Back to Home</a>
+    <h1>{{ genre }} Book Recommendations</h1>
+
+    {% for book in books %}
+        <div class="book">
+            {% if book.thumbnail %}
+                <img src="{{ book.thumbnail }}" alt="Book Cover">
+            {% endif %}
+            <h2>{{ book.title }}</h2>
+            <p><strong>Author:</strong> {{ book.author }}</p>
+            <p><strong>Rating:</strong>
+                {% if book.rating != 'N/A' %}
+                    {{ book.rating }}/5
+                {% else %}
+                    No rating available
+                {% endif %}
+            </p>
+            <p><strong>Description:</strong> {{ book.description }}</p>
+        </div>
+        <hr>
+    {% endfor %}
+
+    <!-- Show Next Page button if more results exist -->
+    {% if next_index %}
+        <form method="get" action="/recommendations">
+            <input type="hidden" name="genre" value="{{ genre }}">
+            <input type="hidden" name="start" value="{{ next_index }}">
+            <button type="submit">Next Page →</button>
+        </form>
+    {% endif %}
+
+    <br><a href="/">← Back to Home</a>
 </body>
 </html>
