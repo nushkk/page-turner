@@ -1,42 +1,61 @@
-<!-- templates/results.html -->
-
+<!-- results.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>{{ genre }} Book Recommendations</title>
+    <meta charset="UTF-8">
+    <title>Page Turner – Recommendations</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>{{ genre }} Book Recommendations</h1>
+    <div class="container">
+        <h1>Books in {{ genre }}</h1>
 
-    {% for book in books %}
-        <div class="book">
-            {% if book.thumbnail %}
-                <img src="{{ book.thumbnail }}" alt="Book Cover">
-            {% endif %}
-            <h2>{{ book.title }}</h2>
-            <p><strong>Author:</strong> {{ book.author }}</p>
-            <p><strong>Rating:</strong>
-                {% if book.rating != 'N/A' %}
-                    {{ book.rating }}/5
-                {% else %}
-                    No rating available
+        <!-- loops through books & display info -->
+        {% for book in books %}
+            <div class="book">
+                {% if book.thumbnail %}
+                    <img src="{{ book.thumbnail }}" alt="Book cover">
                 {% endif %}
-            </p>
-            <p><strong>Description:</strong> {{ book.description }}</p>
+                <div class="book-info">
+                    <h3>{{ book.title }}</h3>
+                    <p><strong>Author:</strong> {{ book.author }}</p>
+                    <p><strong>Rating:</strong> 
+                        {% if book.rating != 'N/A' %}
+                            {{ book.rating }}/5
+                        {% else %}
+                            No rating available
+                        {% endif %}
+                    </p>
+                    <p><strong>Description:</strong> {{ book.description }}</p>
+                </div>
+            </div>
+        {% endfor %}
+
+        <!-- pagination UI (main data from google books api from app.py) -->
+        <div class="pagination">
+            {% if prev_index > 0 %}
+                <form method="GET" action="/recommendations" style="display:inline;">
+                    <input type="hidden" name="genre" value="{{ genre }}">
+                    <input type="hidden" name="start" value="{{ prev_index }}">
+                    <button type="submit">Previous</button>
+                </form>
+            {% endif %}
+
+            <span>Page {{ current_page }}</span>
+
+            {% if next_index %}
+                <form method="GET" action="/recommendations" style="display:inline;">
+                    <input type="hidden" name="genre" value="{{ genre }}">
+                    <input type="hidden" name="start" value="{{ next_index }}">
+                    <button type="submit">Next</button>
+                </form>
+            {% endif %}
         </div>
-        <hr>
-    {% endfor %}
 
-    <!-- Show Next Page button if more results exist -->
-    {% if next_index %}
-        <form method="get" action="/recommendations">
-            <input type="hidden" name="genre" value="{{ genre }}">
-            <input type="hidden" name="start" value="{{ next_index }}">
-            <button type="submit">Next Page →</button>
-        </form>
-    {% endif %}
-
-    <br><a href="/">← Back to Home</a>
+        <!-- back to home -->
+        <div style="margin-top: 20px;">
+            <a href="/">← Back to genre selection</a>
+        </div>
+    </div>
 </body>
 </html>

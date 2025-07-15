@@ -1,75 +1,109 @@
+/* === GENERAL PAGE STYLING === */
 body {
-    font-family: 'Times New Roman', serif;
-    background-color: #ffe6f0; /* soft light pink */
+    background-color: #ffe6f0;  /* soft light pink */
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 14px;
     color: #333;
     margin: 0;
-    padding: 20px;
-    font-size: 14px; /* slightly above 12-13px as requested */
+    padding: 0;
 }
 
-h1 {
-    color: #5a2a50;
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* === HEADER === */
+h1, h2 {
+    text-align: center;
+    color: #b30059;  /* deep pink */
+}
+
+/* === FORM STYLING === */
+form {
     text-align: center;
     margin-bottom: 30px;
 }
 
-form {
-    max-width: 400px;
-    margin: 0 auto 30px auto;
-    padding: 20px;
-    background: #fff0f6;
-    border: 1px solid #ddc;
-    border-radius: 8px;
-}
-
-label, select, button {
-    font-family: 'Times New Roman', serif;
+select {
+    padding: 8px;
     font-size: 14px;
-}
-
-select, button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
 }
 
 button {
-    background-color: #cc6699;
-    color: white;
+    padding: 8px 14px;
+    font-size: 14px;
+    background-color: #f2b6c5;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #b35985;
+    background-color: #e89bb2;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-li {
-    background: #fff0f6;
-    margin-bottom: 15px;
+/* === BOOK CARDS === */
+.book {
+    border: 1px solid #ddd;
+    background-color: #fff;
     padding: 15px;
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    border: 1px solid #ddc;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: flex-start;
 }
 
-a {
-    display: block;
+.book img {
+    width: 100px;
+    height: auto;
+    margin-right: 15px;
+    border-radius: 4px;
+}
+
+.book-details {
+    flex: 1;
+}
+
+.book-details h3 {
+    margin: 0 0 10px;
+    color: #b30059;
+    font-size: 16px;
+}
+
+.book-details p {
+    margin: 4px 0;
+}
+
+/* === PAGINATION STYLING === */
+.pagination {
     text-align: center;
     margin-top: 30px;
-    color: #b35985;
-    text-decoration: none;
-    font-family: 'Times New Roman', serif;
+    margin-bottom: 40px;
 }
 
-a:hover {
-    text-decoration: underline;
+.pagination span {
+    font-weight: bold;
+    font-size: 14px;
+    display: inline-block;
+    margin: 0 15px;
+}
+
+.pagination button {
+    padding: 5px 10px;
+    font-size: 12px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f2b6c5;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pagination button:hover {
+    background-color: #e89bb2;
 }
