@@ -41,4 +41,3 @@ Page Turner is a full-stack book recommendation web app designed for fellow book
 - Browse recommended books fetched live from Google Books.
 - Use the pagination buttons to navigate through results.
 
-Feel free to reach out if you have any questions or feedback!
