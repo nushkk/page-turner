@@ -1,4 +1,4 @@
-# Page Turner
+# Page Turner 📚
 
 Page Turner is a full-stack book recommendation web app designed for fellow book lovers to discover their next great read by genre. This project integrates the Google Books API to provide real-time book data with a clean and responsive user interface.
 
